@@ -5,20 +5,14 @@ A flight booking REST API built with Elysia and Bun runtime.
 ## Prerequisites
 
 ### 1. Install Bun Runtime
-For Windows users, you need WSL (Windows Subsystem for Linux):
 
 ```bash
-# Install WSL if not already installed
-wsl --install
 
-# Install Bun in WSL
-curl -fsSL https://bun.sh/install | bash
-```
 
 ### 2. Install Visual Studio Code
 1. Download from: https://code.visualstudio.com/
 2. Install these extensions:
-   - SQLite Viewer
+
    - Thunder Client (for API testing)
    - Bun
    - TypeScript
@@ -154,6 +148,18 @@ curl -X POST http://localhost:3000/bookings ^
 -d "{\"passenger_id\":\"P001\",\"flight_id\":\"F001\",\"seat_class\":\"Economy\",\"booking_date\":\"2025-02-01\",\"departure_date\":\"2025-03-01\"}"
 ```
 
+Expected Response:
+```json
+{ 
+  "booking_id":"B1741194324251",
+  "passenger_id":"P001",
+  "flight_id":"F001",
+  "seat":"12B",
+  "price":300,
+  "status":"Confirmed"
+}
+```
+
 #### 2. Create Booking (Business Class)
 ```bash
 curl -X POST http://localhost:3000/bookings ^
@@ -161,11 +167,36 @@ curl -X POST http://localhost:3000/bookings ^
 -d "{\"passenger_id\":\"P001\",\"flight_id\":\"F001\",\"seat_class\":\"Business\",\"booking_date\":\"2025-02-01\",\"departure_date\":\"2025-03-01\"}"
 ```
 
+Expected Response:
+```json
+{ 
+  "booking_id":"B1741194433687",
+  "passenger_id":"P001",
+  "flight_id":"F001",
+  "seat":"12B",
+  "price":1000,
+  "status":"Confirmed"
+}
+```
+
 #### 3. Create Booking (First Class)
 ```bash
 curl -X POST http://localhost:3000/bookings ^
 -H "Content-Type: application/json" ^
 -d "{\"passenger_id\":\"P001\",\"flight_id\":\"F001\",\"seat_class\":\"First\",\"booking_date\":\"2025-02-01\",\"departure_date\":\"2025-03-01\"}"
+```
+
+Expected Response:
+```json
+{ 
+  "booking_id":"B1741194494750",
+  "passenger_id":"P001",
+  "flight_id":"F001",
+  "seat":"12B",
+  "price":3000,
+  "status":"Confirmed"
+}
+
 ```
 
 #### 4. Cancel Booking
@@ -232,9 +263,33 @@ curl -X POST http://localhost:3000/bookings ^
 -d "{\"passenger_id\":\"P001\",\"flight_id\":\"F001\",\"seat_class\":\"Economy\",\"booking_date\":\"2024-01-01\",\"departure_date\":\"2024-02-01\"}"
 ```
 
+Expected Response:
+```json
+{ 
+  "booking_id":"B1741194578098",
+  "passenger_id":"P001",
+  "flight_id":"F001",
+  "seat":"12B",
+  "price":270,
+  "status":"Confirmed"
+}
+```
+
 #### 4. Full Flight Booking
 ```bash
 curl -X POST http://localhost:3000/bookings ^
 -H "Content-Type: application/json" ^
 -d "{\"passenger_id\":\"P001\",\"flight_id\":\"F001\",\"seat_class\":\"Economy\",\"booking_date\":\"2025-02-01\",\"departure_date\":\"2025-03-01\"}"
+```
+
+Expected Response:
+```json
+{ 
+  "booking_id":"B1741194619663",
+  "passenger_id":"P001",
+  "flight_id":"F001",
+  "seat":"12B",
+  "price":300,
+  "status":"Confirmed"
+}
 ```
