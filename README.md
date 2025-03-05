@@ -6,9 +6,6 @@ A flight booking REST API built with Elysia and Bun runtime.
 
 ### 1. Install Bun Runtime
 
-```bash
-
-
 ### 2. Install Visual Studio Code
 1. Download from: https://code.visualstudio.com/
 2. Install these extensions:
@@ -27,9 +24,6 @@ cd app
 # Install dependencies
 bun install
 
-# Create SQLite database
-bun run db:setup
-
 # Start development server
 bun run dev
 ```
@@ -42,7 +36,8 @@ app/
 │   ├── db.ts            # Database configuration
 │   ├── flight.ts        # Flight management
 │   ├── booking_system.ts # Booking logic
-│   └── passenger.ts     # Passenger management
+│   ├── passenger.ts     # Passenger management
+│   └── discount.ts     # Discount logic
 ├── tests/
 │   ├── test_booking_system.ts
 │   ├── test_booking_system.ts
@@ -63,7 +58,7 @@ bun test
 bun test tests/test_flight.ts
 ```
 
-## API Testing with cURL
+## API Testing with URL
 
 ### Passenger Endpoints
 
@@ -103,17 +98,25 @@ Expected Response:
 
 ### Flight Endpoints
 
-#### 1. Get All Flights
-```bash
-curl http://localhost:3000/flights
-```
 
-#### 2. Get Flight Details
+#### 1. Get Flight Details
 ```bash
 curl http://localhost:3000/flights/F001
 ```
 
-#### 3. Get Available Seats
+Expected Response:
+```json
+{ 
+  "flight_id":"F001",
+  "airline":"Airline A",
+  "departure":"2025-03-01T03:00:00.000Z",
+  "arrival":"2025-03-01T07:00:00.000Z",
+  "origin":"City A",
+  "destination":"City B"
+}
+```
+
+#### 2. Get Available Seats
 ```bash
 curl http://localhost:3000/flights/F001/seats
 ```
@@ -204,6 +207,16 @@ Expected Response:
 curl -X DELETE http://localhost:3000/bookings/B1741188014253
 ```
 
+Expected Response:
+```json
+{ 
+  "booking_id":"B1741188014253",
+  "status":"Cancelled",
+  "refund_amount":200
+}
+
+```
+
 ### Price Testing
 
 #### 1. Early Booking Discount (30+ days)
@@ -251,9 +264,19 @@ Expected Response:
 curl http://localhost:3000/passengers/P999
 ```
 
+Expected Response:
+```bash
+NOT_FOUND
+```
+
 #### 2. Invalid Flight ID
 ```bash
 curl http://localhost:3000/flights/F999
+```
+
+Expected Response:
+```json
+{ "error":"Flight F999 not found" }
 ```
 
 #### 3. Booking with Past Date
