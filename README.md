@@ -27,7 +27,7 @@ curl -fsSL https://bun.sh/install | bash
 
 ```bash
 # Clone the repository
-git clone [your-repo-url]
+git clone git@github.com:Markky55123/Flight-Booking-Seat-Allocation-System.git
 cd app
 
 # Install dependencies
