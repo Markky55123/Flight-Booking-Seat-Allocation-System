@@ -1,0 +1,33 @@
+# Flight Booking System Dependencies
+
+## Runtime Dependencies
+bun ^1.0.0          # JavaScript/TypeScript runtime
+elysia ^0.7.0       # Web framework for Bun
+sqlite3 ^5.1.0      # SQLite database
+
+## Development Dependencies
+typescript ^5.0.0   # TypeScript language support
+@types/bun ^1.0.0   # Type definitions for Bun
+jest ^29.0.0        # Testing framework
+
+## VS Code Extensions Required
+- SQLite Viewer
+- Thunder Client
+- Bun
+- TypeScript and JavaScript Language Features
+
+## System Requirements
+- Windows 10/11 with WSL2
+- Node.js 16+ (for development tools)
+- VS Code
+
+## Database
+- SQLite 3.x
+
+## Environment Variables
+PORT=3000
+NODE_ENV=development
+
+## Optional Tools
+- Postman (for API testing)
+- SQLite Browser (for database management)
